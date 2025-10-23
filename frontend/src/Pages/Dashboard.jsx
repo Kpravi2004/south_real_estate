@@ -31,28 +31,28 @@ function Dashboard() {
       {/* Category Section */}
       <div className="category-container">
         <div className="category-card">
-          <img src="/agriculture.jpg" alt="Agricultural Lands" />
+          <img src="" alt="Agricultural Lands" />
           <div className="overlay">
             <h2>Agricultural Lands</h2>
           </div>
         </div>
 
         <div className="category-card">
-          <img src="/plots.jpg" alt="Plots" />
+          <img src="" alt="Plots" />
           <div className="overlay">
             <h2>Plots</h2>
           </div>
         </div>
 
         <div className="category-card">
-          <img src="/industrial.jpg" alt="Industrial Lands" />
+          <img src="" alt="Industrial Lands" />
           <div className="overlay">
             <h2>Industrial Lands</h2>
           </div>
         </div>
 
         <div className="category-card">
-          <img src="/empty.jpg" alt="Empty Lands" />
+          <img src="" alt="Empty Lands" />
           <div className="overlay">
             <h2>Empty Lands</h2>
           </div>

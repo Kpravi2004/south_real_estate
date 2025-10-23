@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home";
-import Dashboard from "./Pages/Dashboard"; // Import your Dashboard page // Optional separate admin login page
+import Dashboard from "./Pages/Dashboard";
 
 function App() {
   return (
