@@ -3,8 +3,8 @@ import "./Dashboard.css";
 import { LanguageContext } from "../context/LanguageContext";
 
 function Dashboard() {
+  const { language, toggleLanguage } = useContext(LanguageContext);
   const [searchQuery, setSearchQuery] = useState("");
-  const { language } = useContext(LanguageContext);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -20,6 +20,12 @@ function Dashboard() {
 
   return (
     <div className="dashboard-page">
+      <div className="top-right">
+        <button onClick={toggleLanguage} className="lang-btn">
+          {language === "en" ? "தமிழ்" : "English"}
+        </button>
+      </div>
+
       <div className="search-container">
         <form onSubmit={handleSearch}>
           <input
@@ -50,4 +56,3 @@ function Dashboard() {
 }
 
 export default Dashboard;
-
