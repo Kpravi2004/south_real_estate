@@ -11,7 +11,7 @@ function Home() {
 
   return (
     <div className="home-page">
-      {/* Top-right Language Button Only */}
+      {/* Top-right Language Button */}
       <div className="top-right">
         <button onClick={toggleLanguage} className="lang-btn">
           {language === "en" ? "தமிழ்" : "English"}
@@ -28,10 +28,8 @@ function Home() {
           </h1>
           <p className="description">
             {language === "en"
-              ? `A trusted platform to explore verified lands across South Tamil Nadu. 
-                 Secure listings managed by admin to ensure genuine property exchanges.`
-              : `தென் தமிழ்நாட்டின் சரிபார்க்கப்பட்ட நிலங்களை காண ஒரு நம்பகமான தளம். 
-                 நிர்வாகி வழிநடத்தும் பட்டியல்கள் பாதுகாப்பான நில பரிவர்த்தனைகளை உறுதி செய்கின்றன.`}
+              ? "A trusted platform to explore verified lands across South Tamil Nadu. Secure listings managed by admin to ensure genuine property exchanges."
+              : "தென் தமிழ்நாட்டின் சரிபார்க்கப்பட்ட நிலங்களை காண ஒரு நம்பகமான தளம். நிர்வாகி வழிநடத்தும் பட்டியல்கள் பாதுகாப்பான நில பரிவர்த்தனைகளை உறுதி செய்கின்றன."}
           </p>
 
           <Link to="/dashboard" className="explore-btn">

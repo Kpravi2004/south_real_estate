@@ -7,8 +7,14 @@ function Dashboard() {
   const handleSearch = (e) => {
     e.preventDefault();
     console.log("Searching for:", searchQuery);
-    // Later we’ll connect this to backend API (Node + MongoDB)
   };
+
+  const categories = [
+    { title: "Agricultural Lands", img: "/agriculture.jpg" },
+    { title: "Plots", img: "/plots.jpg" },
+    { title: "Industrial Lands", img: "/industrial.jpg" },
+    { title: "Empty Lands", img: "/empty.jpeg" },
+  ];
 
   return (
     <div className="dashboard-page">
@@ -28,35 +34,16 @@ function Dashboard() {
         </form>
       </div>
 
-      {/* Category Section */}
+      {/* Category Section - Full row images */}
       <div className="category-container">
-        <div className="category-card">
-          <img src="" alt="Agricultural Lands" />
-          <div className="overlay">
-            <h2>Agricultural Lands</h2>
+        {categories.map((cat, index) => (
+          <div key={index} className="category-row">
+            <img src={cat.img} alt={cat.title} />
+            <div className="overlay">
+              <h2>{cat.title}</h2>
+            </div>
           </div>
-        </div>
-
-        <div className="category-card">
-          <img src="" alt="Plots" />
-          <div className="overlay">
-            <h2>Plots</h2>
-          </div>
-        </div>
-
-        <div className="category-card">
-          <img src="" alt="Industrial Lands" />
-          <div className="overlay">
-            <h2>Industrial Lands</h2>
-          </div>
-        </div>
-
-        <div className="category-card">
-          <img src="" alt="Empty Lands" />
-          <div className="overlay">
-            <h2>Empty Lands</h2>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );
