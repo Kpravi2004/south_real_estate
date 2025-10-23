@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./Dashboard.css";
+import { LanguageContext } from "../context/LanguageContext";
 
 function Dashboard() {
   const [searchQuery, setSearchQuery] = useState("");
+  const { language } = useContext(LanguageContext);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -10,31 +12,29 @@ function Dashboard() {
   };
 
   const categories = [
-    { title: "Agricultural Lands", img: "/agriculture.jpg" },
-    { title: "Plots", img: "/plots.jpg" },
-    { title: "Industrial Lands", img: "/industrial.jpg" },
-    { title: "Empty Lands", img: "/empty.jpeg" },
+    { title: language === "en" ? "Agricultural Lands" : "விவசாய நிலங்கள்", img: "/agriculture.jpg" },
+    { title: language === "en" ? "Plots" : "தோட்ட நிலங்கள்", img: "/plots.jpg" },
+    { title: language === "en" ? "Industrial Lands" : "தொழிற்சாலை நிலங்கள்", img: "/industrial.jpg" },
+    { title: language === "en" ? "Empty Lands" : "காலியாக் நிலங்கள்", img: "/empty.jpeg" },
   ];
 
   return (
     <div className="dashboard-page">
-      {/* Search Section */}
       <div className="search-container">
         <form onSubmit={handleSearch}>
           <input
             type="text"
-            placeholder="Search by district or region..."
+            placeholder={language === "en" ? "Search by district or region..." : "மாவட்டம் அல்லது பகுதியின்படி தேடவும்..."}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="search-bar"
           />
           <button type="submit" className="search-btn">
-            🔍 Search
+            🔍 {language === "en" ? "Search" : "தேடவும்"}
           </button>
         </form>
       </div>
 
-      {/* Category Section - Full row images */}
       <div className="category-container">
         {categories.map((cat, index) => (
           <div key={index} className="category-row">
@@ -50,3 +50,4 @@ function Dashboard() {
 }
 
 export default Dashboard;
+

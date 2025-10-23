@@ -1,24 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
+import { LanguageContext } from "../context/LanguageContext";
 
 function Home() {
-  const [language, setLanguage] = useState("en");
-
-  const toggleLanguage = () => {
-    setLanguage(language === "en" ? "ta" : "en");
-  };
+  const { language, toggleLanguage } = useContext(LanguageContext);
 
   return (
     <div className="home-page">
-      {/* Top-right Language Button */}
       <div className="top-right">
         <button onClick={toggleLanguage} className="lang-btn">
           {language === "en" ? "தமிழ்" : "English"}
         </button>
       </div>
 
-      {/* Center Section */}
       <div className="content">
         <div className="glass-box">
           <h1 className="title">
