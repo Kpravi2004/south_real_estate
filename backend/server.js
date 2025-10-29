@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(cors());
 app.use("/uploads", express.static("uploads")); // serve uploaded files
 
-// MongoDB connection
+// MongoDB 
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("✅ MongoDB connected"))

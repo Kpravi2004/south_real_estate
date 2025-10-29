@@ -1,223 +1,138 @@
-/* === Land List Page === */
-.landlist-page {
+/* src/Pages/Landlist.css (replaces previous) */
+
+/* Page root */
+.landlist-root {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f3f7ff, #ffffff);
-  padding: 30px 6%;
+  background: linear-gradient(180deg, #eef6ff 0%, #f7fbff 100%);
+  padding: 28px;
   font-family: "Poppins", sans-serif;
-  color: #222;
-  overflow-x: hidden;
+  color: #0f1724;
 }
 
-/* === Top Bar === */
-.top-bar {
+/* Header */
+.landlist-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 25px;
-}
-
-.title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #222;
-  letter-spacing: 0.5px;
-}
-
-.top-buttons {
-  display: flex;
   gap: 12px;
+  margin-bottom: 18px;
+}
+.landlist-header h1 { margin:0; font-size:1.4rem; }
+.header-controls .global-lang {
+  background: linear-gradient(90deg,#0078ff,#00c3ff);
+  color:white;
+  border:none;
+  padding:8px 12px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:700;
 }
 
-/* === Language & Filter Buttons === */
-.lang-btn,
-.filter-btn {
-  padding: 10px 18px;
-  border: none;
-  border-radius: 25px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+/* District buttons */
+.district-buttons {
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:18px;
 }
-
-.lang-btn {
-  background: #0078ff;
-  color: #fff;
-}
-
-.lang-btn:hover {
-  background: #005ed6;
-  transform: scale(1.05);
-}
-
-.filter-btn {
-  background: #111;
-  color: #fff;
-}
-
-.filter-btn:hover {
-  background: #333;
-  transform: scale(1.05);
-}
-
-/* === Filter Panel === */
-.filter-panel {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(8px);
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-  display: flex;
-  gap: 15px;
-  margin: 25px 0;
-  flex-wrap: wrap;
-  animation: fadeIn 0.4s ease;
-}
-
-.filter-panel select,
-.submit-btn {
-  padding: 10px 14px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  font-size: 15px;
-  outline: none;
-  transition: 0.3s ease;
-}
-
-.filter-panel select:focus {
-  border-color: #0078ff;
-  box-shadow: 0 0 8px rgba(0, 120, 255, 0.2);
-}
-
-.submit-btn {
-  background: #0078ff;
-  color: white;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.submit-btn:hover {
-  background: #005ed6;
-  transform: scale(1.05);
-}
-
-/* === District Sections === */
-.land-container {
-  display: flex;
-  flex-direction: column;
-  gap: 35px;
-}
-
-.district-section {
+.district-btn {
   background: white;
-  border-radius: 16px;
-  padding: 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  transition: 0.3s ease;
+  padding:10px 14px;
+  border-radius:999px;
+  border:1px solid rgba(2,6,23,0.06);
+  box-shadow: 0 8px 20px rgba(2,6,23,0.04);
+  cursor:pointer;
+  font-weight:700;
+  transition: transform .18s, box-shadow .18s;
+}
+.district-btn.active {
+  background: linear-gradient(90deg,#0078ff,#00c3ff);
+  color:white;
+  transform:translateY(-4px);
+  box-shadow: 0 14px 40px rgba(2,6,23,0.12);
 }
 
-.district-section:hover {
-  transform: translateY(-3px);
+/* containers list */
+.containers-list { display:flex; flex-direction:column; gap:18px; }
+
+/* each district container card */
+.district-container {
+  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(250,250,255,0.95));
+  border-radius:12px;
+  padding:12px;
+  border:1px solid rgba(2,6,23,0.04);
+  box-shadow: 0 12px 30px rgba(2,6,23,0.06);
+  overflow: visible;
+  position: relative;
 }
 
-.district-section h2 {
-  font-size: 1.5rem;
-  color: #0078ff;
-  margin-bottom: 15px;
-  border-left: 5px solid #0078ff;
-  padding-left: 10px;
+/* header */
+.district-header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:6px 8px;
+  border-bottom:1px solid rgba(2,6,23,0.03);
+}
+.district-header h3 { margin:0; font-size:1.05rem; }
+.district-header .muted { color:#6b7280; font-size:0.9rem; margin-top:4px; }
+
+/* body */
+.district-body {
+  display:grid;
+  grid-template-columns: 420px 1fr;
+  gap:12px;
+  padding:12px;
 }
 
-/* === Land Cards === */
-.land-card {
-  background: linear-gradient(145deg, #f7f9ff, #ffffff);
-  border: 1px solid #e0e0e0;
-  padding: 15px 20px;
-  margin: 12px 0;
-  border-radius: 14px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+/* media column */
+.media-col { display:flex; flex-direction:column; gap:10px; align-items:stretch; }
+.media-viewer {
+  background:#0f1724;
+  color:white;
+  border-radius:10px;
+  min-height:260px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  padding:8px;
+  box-shadow: 0 12px 30px rgba(2,6,23,0.12);
 }
+.media-placeholder { text-align:center; color:#cbd5e1; white-space:pre-line; padding:12px; }
+.media-main { width:100%; max-height:420px; object-fit:contain; border-radius:6px; }
 
-.land-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
-}
+/* thumbs */
+.thumbs { display:flex; gap:8px; overflow-x:auto; padding:6px; }
+.thumb { position:relative; min-width:72px; height:64px; border-radius:8px; overflow:hidden; flex:0 0 72px; border:2px solid transparent; transition: transform .12s, border-color .12s; cursor:pointer; }
+.thumb img, .thumb video { width:100%; height:100%; object-fit:cover; display:block; }
+.thumb.active { transform: translateY(-6px); border-color: #0078ff; box-shadow: 0 8px 20px rgba(2,6,23,0.12); }
+.thumb-remove { position:absolute; top:4px; right:4px; background:rgba(0,0,0,0.5); color:white; border:none; width:22px; height:22px; border-radius:50%; font-size:12px; display:flex; align-items:center; justify-content:center; cursor:pointer; }
 
-.land-card p {
-  font-size: 15px;
-  color: #333;
-}
+/* form column */
+.form-col { padding:12px; background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(250,250,255,1)); border-radius:10px; box-shadow: 0 8px 20px rgba(2,6,23,0.04); display:flex; flex-direction:column; gap:10px; }
+.form-col label { font-weight:600; color:#374151; font-size:0.95rem; }
+.form-col input, .form-col select { padding:10px 12px; border-radius:8px; border:1px solid rgba(15,23,42,0.06); background:white; outline:none; font-size:0.95rem; }
 
-.land-card b {
-  color: #000;
-}
+/* post button area */
+.form-actions { display:flex; justify-content:flex-end; margin-top:8px; }
+.post-btn { background: linear-gradient(90deg,#0078ff,#00c3ff); color:white; padding:10px 18px; border-radius:10px; border:none; font-weight:700; cursor:pointer; }
 
-/* === Empty State === */
-.empty-text {
-  color: #777;
-  font-style: italic;
-  font-size: 15px;
-  margin-top: 10px;
-  text-align: center;
-}
+/* container add floating controls */
+.container-add { position:absolute; right:14px; bottom:14px; display:flex; gap:8px; align-items:center; }
+.add-btn { display:inline-flex; align-items:center; gap:8px; padding:8px 10px; border-radius:8px; background:linear-gradient(90deg,#00c3ff,#0078ff); color:white; font-weight:700; cursor:pointer; }
+.add-btn.video { background: linear-gradient(90deg,#ff8a00,#ff3d00); }
 
-/* === View Details Button === */
-.view-btn {
-  align-self: flex-start;
-  margin-top: 8px;
-  padding: 8px 14px;
-  border: none;
-  border-radius: 25px;
-  background: #2b7a0b;
-  color: white;
-  font-weight: 500;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
+/* small hint */
+.add-hint { font-size:12px; color:#6b7280; margin-left:8px; }
 
-.view-btn:hover {
-  background: #1d5706;
-  transform: scale(1.05);
-}
+/* floating global post */
+.floating-global-post { position:fixed; right:20px; bottom:20px; z-index:999; background: linear-gradient(90deg,#0078ff,#00c3ff); color:white; border:none; padding:14px 20px; border-radius:999px; font-weight:800; box-shadow:0 14px 40px rgba(2,6,23,0.18); cursor:pointer; }
 
-/* === Animation === */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* === Responsive Design === */
-@media (max-width: 768px) {
-  .filter-panel {
-    flex-direction: column;
-  }
-
-  .top-bar {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .land-card {
-    padding: 12px 16px;
-  }
-
-  .title {
-    font-size: 1.6rem;
-  }
-
-  .district-section h2 {
-    font-size: 1.3rem;
-  }
+/* responsive */
+@media (max-width: 1000px) {
+  .district-body { grid-template-columns: 1fr; }
+  .media-col { order:1; }
+  .form-col { order:2; }
+  .district-container { padding-bottom:60px; } /* space for add controls */
 }

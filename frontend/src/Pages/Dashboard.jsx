@@ -1,45 +1,31 @@
+// src/Pages/Dashboard.jsx
 import React, { useState, useContext } from "react";
 import "./Dashboard.css";
 import { LanguageContext } from "../context/LanguageContext";
-import { useNavigate } from "react-router-dom"; // ✅ Import navigation hook
+import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
   const { language, toggleLanguage } = useContext(LanguageContext);
   const [searchQuery, setSearchQuery] = useState("");
-  const navigate = useNavigate(); // ✅ Initialize navigation
+  const navigate = useNavigate();
 
   const handleSearch = (e) => {
     e.preventDefault();
+    // For now just console — you can later hook to backend/search API
     console.log("Searching for:", searchQuery);
   };
 
-  // ✅ Category list with images and route key
+  // categories — route will navigate to /landlist?type=...
   const categories = [
-    {
-      title: language === "en" ? "Agricultural Lands" : "விவசாய நிலங்கள்",
-      img: "/agriculture.jpg",
-      route: "/landlist",
-    },
-    {
-      title: language === "en" ? "Plots" : "தோட்ட நிலங்கள்",
-      img: "/plots.jpg",
-      route: "/landlist",
-    },
-    {
-      title: language === "en" ? "Industrial Lands" : "தொழிற்சாலை நிலங்கள்",
-      img: "/industrial.jpg",
-      route: "/landlist",
-    },
-    {
-      title: language === "en" ? "Empty Lands" : "காலியாக் நிலங்கள்",
-      img: "/empty.jpeg",
-      route: "/landlist",
-    },
+    { key: "agriculture", titleEn: "Agricultural Lands", titleTa: "விவசாய நிலங்கள்", img: "/agriculture.jpg" },
+    { key: "plots", titleEn: "Plots", titleTa: "பிளாட்கள்", img: "/plots.jpg" },
+    { key: "industrial", titleEn: "Industrial Lands", titleTa: "தொழிற்சாலை நிலங்கள்", img: "/industrial.jpg" },
+    { key: "empty", titleEn: "Empty Lands", titleTa: "வெற்றிநிலங்கள்", img: "/empty.jpeg" },
   ];
 
-  // ✅ Handle click navigation
-  const handleCategoryClick = (route) => {
-    navigate(route);
+  const handleCategoryClick = (key) => {
+    // navigate to landlist and send type as query param
+    navigate(`/landlist?type=${encodeURIComponent(key)}`);
   };
 
   return (
@@ -54,11 +40,7 @@ function Dashboard() {
         <form onSubmit={handleSearch}>
           <input
             type="text"
-            placeholder={
-              language === "en"
-                ? "Search by district or region..."
-                : "மாவட்டம் அல்லது பகுதியின்படி தேடவும்..."
-            }
+            placeholder={language === "en" ? "Search by district or region..." : "மாவட்டம் அல்லது பகுதியின்படி தேடவும்..."}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="search-bar"
@@ -69,17 +51,12 @@ function Dashboard() {
         </form>
       </div>
 
-      {/* ✅ Category rows clickable */}
       <div className="category-container">
-        {categories.map((cat, index) => (
-          <div
-            key={index}
-            className="category-row"
-            onClick={() => handleCategoryClick(cat.route)} // ✅ Click to navigate
-          >
-            <img src={cat.img} alt={cat.title} />
+        {categories.map((cat) => (
+          <div key={cat.key} className="category-row" onClick={() => handleCategoryClick(cat.key)}>
+            <img src={cat.img} alt={language === "en" ? cat.titleEn : cat.titleTa} />
             <div className="overlay">
-              <h2>{cat.title}</h2>
+              <h2>{language === "en" ? cat.titleEn : cat.titleTa}</h2>
             </div>
           </div>
         ))}
