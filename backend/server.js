@@ -1,24 +1,27 @@
 import express from "express";
 import mongoose from "mongoose";
-import cors from "cors";
 import dotenv from "dotenv";
-import landRoutes from "./routes/landRoutes.js";
+import cors from "cors";
+import landRoutes from "./routes/landRoutes.js"; // ✅ Import your land routes
 
 dotenv.config();
+
 const app = express();
-
-// Middleware
-app.use(express.json());
 app.use(cors());
-app.use("/uploads", express.static("uploads")); // serve uploaded files
+app.use(express.json());
 
-// MongoDB connection
+// ✅ MongoDB connection
 mongoose
   .connect(process.env.MONGO_URI)
-  .then(() => console.log("✅ MongoDB connected"))
-  .catch((err) => console.log("❌ DB Error:", err));
+  .then(() => console.log("✅ MongoDB Connected to South District Real Estate"))
+  .catch((err) => console.error("❌ Database Connection Error:", err));
 
-// Routes
+// ✅ Default route
+app.get("/", (req, res) => {
+  res.send("🌿 South District Real Estate Backend is Running 🚀");
+});
+
+// ✅ Land routes (all APIs start with /api/lands)
 app.use("/api/lands", landRoutes);
 
 const PORT = process.env.PORT || 5000;
