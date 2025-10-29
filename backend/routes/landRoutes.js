@@ -7,6 +7,7 @@ const router = express.Router();
 router.post("/", async (req, res) => {
   try {
     const newLand = new Land(req.body);
+    
     await newLand.save();
     res.status(201).json({ message: "Land added successfully!", land: newLand });
   } catch (err) {
