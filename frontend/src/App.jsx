@@ -1,17 +1,16 @@
-// src/App.jsx
-import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home";
+import LandList from "./Pages/Landlist";
 import Dashboard from "./Pages/Dashboard";
-import Landlist from "./Pages/Landlist";
+import Admin from "./Pages/Admin";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/landlist" element={<LandList />} />
       <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/landlist" element={<Landlist />} />
-      {/* If you add post page later, add route here */}
+      <Route path="/admin" element={<Admin />} />
     </Routes>
   );
 }
