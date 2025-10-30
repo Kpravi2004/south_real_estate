@@ -1,3 +1,4 @@
+/* src/Pages/Dashboard.css */
 .dashboard-page {
   min-height: 100vh;
   font-family: "Poppins", sans-serif;
@@ -18,6 +19,7 @@
   border-radius: 30px;
   overflow: hidden;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  align-items:center;
 }
 
 .search-bar {
@@ -46,15 +48,19 @@
 .category-container {
   display: flex;
   flex-direction: column;
+  padding: 24px;
+  gap: 20px;
 }
 
 .category-row {
   position: relative;
   width: 100%;
   height: 300px; /* You can adjust height */
-  margin-bottom: 20px;
+  margin-bottom: 0;
   overflow: hidden;
   cursor: pointer;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(2,6,23,0.06);
 }
 
 .category-row img {
@@ -92,4 +98,22 @@
   font-size: 2rem;
   font-weight: 700;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
+
+/* language button position */
+.top-right {
+  position: absolute;
+  top: 18px;
+  right: 26px;
+  z-index: 5;
+}
+
+.lang-btn {
+  background: rgba(255,255,255,0.9);
+  color: #0078ff;
+  border: 1px solid rgba(0,0,0,0.06);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
 }
