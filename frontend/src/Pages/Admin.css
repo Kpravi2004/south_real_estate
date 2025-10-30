@@ -1,0 +1,66 @@
+.admin-page {
+  background-color: #f5f6fa;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 50px 0;
+}
+
+.admin-container {
+  background: white;
+  width: 90%;
+  max-width: 600px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 30px;
+}
+
+.admin-title {
+  text-align: center;
+  color: #2f3640;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.admin-sub {
+  text-align: center;
+  color: gray;
+  margin-bottom: 25px;
+}
+
+.admin-form .form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.admin-form label {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.admin-form input,
+.admin-form select,
+.admin-form textarea {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  background: #273c75;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+.submit-btn:hover {
+  background: #40739e;
+}
