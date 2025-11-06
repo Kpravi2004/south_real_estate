@@ -1,0 +1,71 @@
+/* Admin login layout + modern look */
+:root{
+  --bg1: #0f2027;
+  --bg2: #203a43;
+  --accent1: #06beb6;
+  --accent2: #48b1bf;
+  --glass: rgba(255,255,255,0.08);
+}
+
+*{box-sizing:border-box}
+body,html,#root{height:100%; margin:0; font-family:Inter, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
+
+.admin-login-viewport{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: linear-gradient(135deg, var(--bg1), var(--bg2));
+  padding:24px;
+}
+
+.admin-login-card{
+  width:380px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  border-radius:14px;
+  padding:32px;
+  box-shadow: 0 10px 30px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+  color:#eef2f7;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.04);
+}
+
+.admin-login-card h1{margin:0 0 6px; font-size:22px;}
+.muted{color:rgba(238,242,247,0.65); font-size:13px; margin-bottom:16px;}
+
+.login-form label{display:block; margin-bottom:12px; font-size:13px; color:rgba(238,242,247,0.9);}
+.login-form input{
+  width:100%;
+  padding:10px 12px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.02);
+  color: #fff;
+  outline:none;
+  font-size:14px;
+  transition: box-shadow .18s, transform .12s;
+}
+.login-form input:focus{ box-shadow: 0 6px 18px rgba(6,190,182,0.08); transform: translateY(-1px); border-color: rgba(6,190,182,0.6);}
+
+.login-error{ margin-top:6px; padding:8px 10px; background: rgba(220, 60, 60, 0.12); color:#ffd1d1; border-radius:8px; font-size:13px; }
+
+.login-actions{ display:flex; gap:8px; margin-top:14px; }
+.btn-primary{
+  flex:1;
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  padding:10px 12px; border-radius:10px; border:none; color:#042; font-weight:700; cursor:pointer;
+  box-shadow: 0 8px 20px rgba(6,190,182,0.12);
+}
+.btn-primary[disabled], .btn-primary[aria-disabled="true"]{ opacity:0.6; cursor:not-allowed; transform:none; box-shadow:none; }
+
+.btn-secondary{
+  background:transparent;
+  border:1px solid rgba(255,255,255,0.06);
+  padding:10px 12px;border-radius:10px;color:#eaf6f5; cursor:pointer;
+}
+.btn-danger{
+  background: linear-gradient(90deg,#e74c3c,#c0392b);
+  padding:10px 12px;border-radius:10px;border:none;color:white; cursor:pointer;
+}
+
+.login-foot{ margin-top:12px; color:rgba(238,242,247,0.6); font-size:13px; text-align:center; }
