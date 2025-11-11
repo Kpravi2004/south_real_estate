@@ -1,22 +1,48 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "../styles/adminDashboard.css";
+import "../styles/AdminDashboard.css";
 
-export default function AdminDashboard() {
+const AdminDashboard = () => {
+  const [stats, setStats] = useState({
+    total: 0,
+    available: 0,
+    sold: 0,
+    pending: 0,
+  });
+
   const navigate = useNavigate();
 
   const logout = () => {
-    localStorage.removeItem("isAdminAuthenticated");
+    localStorage.removeItem("adminToken");
     navigate("/admin/login");
   };
 
+  useEffect(() => {
+    const fetchLands = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/api/lands");
+        const lands = res.data;
+
+        const total = lands.length;
+        const available = lands.filter((land) => land.status === "Available").length;
+        const sold = lands.filter((land) => land.status === "Sold").length;
+        const pending = lands.filter((land) => land.status === "Pending").length;
+
+        setStats({ total, available, sold, pending });
+      } catch (err) {
+        console.error("Error fetching land stats:", err);
+      }
+    };
+
+    fetchLands();
+  }, []);
+
   return (
     <div className="dashboard-container">
+      {/* Sidebar */}
       <aside className="sidebar">
-        <div className="sidebar-header">
-          <h2>Admin Panel</h2>
-          <p className="version">v2.0 Secure</p>
-        </div>
+        <div className="admin-title">🏠 Admin Panel</div>
         <nav>
           <button onClick={() => navigate("/admin/post")}>➕ Post Land</button>
           <button onClick={() => navigate("/admin/view")}>📊 View Database</button>
@@ -25,43 +51,37 @@ export default function AdminDashboard() {
         </nav>
       </aside>
 
-      <main className="main-content">
-        <header>
-          <h1>Welcome, Super Admin 🛡️</h1>
-          <p>Manage all lands safely and securely within this protected environment.</p>
+      {/* Main Dashboard */}
+      <main className="dashboard-main">
+        <header className="admin-header">
+          <h1>Land Management Dashboard</h1>
+          <p>Welcome back, Admin!</p>
         </header>
 
-        <section className="stats-grid">
-          <div className="stat-card">
-            <h3>Total Lands</h3>
-            <p>128</p>
+        <div className="stats-grid">
+          <div className="stat-card total">
+            <h2>Total Lands</h2>
+            <p>{stats.total}</p>
           </div>
-          <div className="stat-card">
-            <h3>Available</h3>
-            <p>96</p>
-          </div>
-          <div className="stat-card">
-            <h3>Sold</h3>
-            <p>22</p>
-          </div>
-          <div className="stat-card">
-            <h3>Pending</h3>
-            <p>10</p>
-          </div>
-        </section>
 
-        <section className="info-card">
-          <h2>Security Notice</h2>
-          <p>
-            All admin actions are logged for audit purposes. Unauthorized access attempts
-            will trigger an instant alert to the system administrator.
-          </p>
-          <p>
-            Ensure you log out properly after use. Use a strong network and secure device
-            for better protection.
-          </p>
-        </section>
+          <div className="stat-card available">
+            <h2>Available</h2>
+            <p>{stats.available}</p>
+          </div>
+
+          <div className="stat-card sold">
+            <h2>Sold</h2>
+            <p>{stats.sold}</p>
+          </div>
+
+          <div className="stat-card pending">
+            <h2>Pending</h2>
+            <p>{stats.pending}</p>
+          </div>
+        </div>
       </main>
     </div>
   );
-}
+};
+
+export default AdminDashboard;
